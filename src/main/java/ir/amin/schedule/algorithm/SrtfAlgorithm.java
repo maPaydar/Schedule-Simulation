@@ -10,6 +10,10 @@ public class SrtfAlgorithm implements ScheduleAlgorithm {
     // Todo implement srtf
     @Override
     public void run(JobScheduler jobScheduler) {
+        while (!jobScheduler.jobs.isEmpty() && !jobScheduler.readyQueue.isEmpty()) {
+            jobScheduler.proccessorTime++;
 
+            jobScheduler.trigger();
+        }
     }
 }

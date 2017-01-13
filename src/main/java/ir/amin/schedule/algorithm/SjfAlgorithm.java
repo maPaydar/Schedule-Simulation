@@ -12,15 +12,19 @@ public class SjfAlgorithm implements ScheduleAlgorithm {
 
     @Override
     public void run(JobScheduler jobScheduler) {
-        for (int i = 0; i < jobScheduler.resources.size(); i++) {
-            Resource fastestResource = jobScheduler.getFastestFreeResource();
-            if (fastestResource != null) {
-                if (!jobScheduler.readyQueue.isEmpty()) {
-                    Job j2 = jobScheduler.readyQueue.remove(jobScheduler.getShortestJob());
-                    j2.setStartTime(jobScheduler.proccessorTime);
-                    fastestResource.allocate(j2);
+        while (!jobScheduler.jobs.isEmpty() && !jobScheduler.readyQueue.isEmpty()) {
+            jobScheduler.proccessorTime++;
+            for (int i = 0; i < jobScheduler.resources.size(); i++) {
+                Resource fastestResource = jobScheduler.getFastestFreeResource();
+                if (fastestResource != null) {
+                    if (!jobScheduler.readyQueue.isEmpty()) {
+                        Job j2 = jobScheduler.readyQueue.remove(jobScheduler.getShortestJob());
+                        j2.setStartTime(jobScheduler.proccessorTime);
+                        fastestResource.allocate(j2);
+                    }
                 }
             }
+            jobScheduler.trigger();
         }
     }
 }

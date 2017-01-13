@@ -12,15 +12,19 @@ public class MaxMinAlgorithm implements ScheduleAlgorithm {
 
     @Override
     public void run(JobScheduler jobScheduler) {
-        for (int i = 0; i < jobScheduler.resources.size(); i++) {
-            Resource fastestResource = jobScheduler.getFastestFreeResource();
-            if (fastestResource != null) {
-                if (!jobScheduler.readyQueue.isEmpty()) {
-                    Job j = jobScheduler.readyQueue.remove(jobScheduler.getLongestJob());
-                    j.setStartTime(jobScheduler.proccessorTime);
-                    fastestResource.allocate(j);
+        while (!jobScheduler.jobs.isEmpty() && !jobScheduler.readyQueue.isEmpty()) {
+            jobScheduler.proccessorTime++;
+            for (int i = 0; i < jobScheduler.resources.size(); i++) {
+                Resource fastestResource = jobScheduler.getFastestFreeResource();
+                if (fastestResource != null) {
+                    if (!jobScheduler.readyQueue.isEmpty()) {
+                        Job j = jobScheduler.readyQueue.remove(jobScheduler.getLongestJob());
+                        j.setStartTime(jobScheduler.proccessorTime);
+                        fastestResource.allocate(j);
+                    }
                 }
             }
+            jobScheduler.trigger();
         }
     }
 }

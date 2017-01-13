@@ -12,16 +12,20 @@ public class RRAlgorithm implements ScheduleAlgorithm {
 
     @Override
     public void run(JobScheduler jobScheduler) {
-        for (int i = 0; i < jobScheduler.resources.size(); i++) {
-            Resource fastestResource = jobScheduler.getFastestFreeResource();
-            if (fastestResource != null) {
-                if (!jobScheduler.readyQueue.isEmpty()) {
-                    Job j = jobScheduler.readyQueue.remove(0);
-                    if (j.getStartTime() == -1)
-                        j.setStartTime(jobScheduler.proccessorTime);
-                    fastestResource.reallocate(j);
+        while (!jobScheduler.jobs.isEmpty() && !jobScheduler.readyQueue.isEmpty()) {
+            jobScheduler.proccessorTime++;
+            for (int i = 0; i < jobScheduler.resources.size(); i++) {
+                Resource fastestResource = jobScheduler.getFastestFreeResource();
+                if (fastestResource != null) {
+                    if (!jobScheduler.readyQueue.isEmpty()) {
+                        Job j = jobScheduler.readyQueue.remove(0);
+                        if (j.getStartTime() == -1)
+                            j.setStartTime(jobScheduler.proccessorTime);
+                        fastestResource.reallocate(j);
+                    }
                 }
             }
+            jobScheduler.trigger();
         }
     }
 }

@@ -11,16 +11,20 @@ public class FcfsAlgorithm implements ScheduleAlgorithm {
 
     @Override
     public void run(JobScheduler jobScheduler) {
-        for (int i = 0; i < jobScheduler.resources.size(); i++) {
-            Resource fastestResource = jobScheduler.getFastestFreeResource();
-            if (fastestResource != null) {
-                // select a job using an algorithm
-                if (!jobScheduler.readyQueue.isEmpty()) {
-                    Job j = jobScheduler.readyQueue.remove(jobScheduler.getShortestRemainJob());
-                    j.setStartTime(jobScheduler.proccessorTime);
-                    fastestResource.allocate(j);
+        while (!jobScheduler.jobs.isEmpty() && !jobScheduler.readyQueue.isEmpty()) {
+            jobScheduler.proccessorTime++;
+            for (int i = 0; i < jobScheduler.resources.size(); i++) {
+                Resource fastestResource = jobScheduler.getFastestFreeResource();
+                if (fastestResource != null) {
+                    // select a job using an algorithm
+                    if (!jobScheduler.readyQueue.isEmpty()) {
+                        Job j = jobScheduler.readyQueue.remove(jobScheduler.getShortestRemainJob());
+                        j.setStartTime(jobScheduler.proccessorTime);
+                        fastestResource.allocate(j);
+                    }
                 }
             }
+            jobScheduler.trigger();
         }
     }
 }

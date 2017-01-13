@@ -28,8 +28,7 @@ public class JobScheduler {
     }
 
     public JobScheduler() {
-        resources.add(new Resource(this, 2));
-        resources.add(new Resource(this, 4));
+        // ToDo implement defualt constructor
     }
 
     public JobScheduler(List<Resource> resources, List<Job> jobs) {
@@ -44,12 +43,7 @@ public class JobScheduler {
     }
 
     public void run() {
-        // ToDo move this while to algorithm run
-        while (!jobs.isEmpty() && !readyQueue.isEmpty()) {
-            proccessorTime++;
-            algorithm.run(this);
-            trigger(proccessorTime);
-        }
+        algorithm.run(this);
     }
 
     public int getShortestJob() {
@@ -91,9 +85,9 @@ public class JobScheduler {
         return sj;
     }
 
-    public void trigger(int milliSec) {
+    public void trigger() {
         for (Resource resource : resources) {
-            resource.trigger(milliSec);
+            resource.trigger(proccessorTime);
         }
     }
 
