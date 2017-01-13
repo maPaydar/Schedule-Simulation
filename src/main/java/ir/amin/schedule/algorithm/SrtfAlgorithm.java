@@ -11,8 +11,8 @@ public class SrtfAlgorithm implements ScheduleAlgorithm {
     @Override
     public void run(JobScheduler jobScheduler) {
         while (!jobScheduler.jobs.isEmpty() && !jobScheduler.readyQueue.isEmpty()) {
-            jobScheduler.proccessorTime++;
 
+            jobScheduler.proccessorTime++;
             jobScheduler.trigger();
         }
     }
