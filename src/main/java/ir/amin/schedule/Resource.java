@@ -14,7 +14,7 @@ public class Resource {
     private int time;
     private int speed;
     private boolean isFree = true;
-    private Job allocatedJob;
+    public Job allocatedJob;
     private int rr = 2;
     private Trigger<Job> triggerObject;
 
@@ -45,13 +45,13 @@ public class Resource {
     }
 
     public void allocate(Job j) {
-        logger.info("Job {} reAllocate with Resourse with speed {}", j, speed);
+        //logger.info("Job {} reAllocate with Resourse with speed {}", j, speed);
         this.setFree(false);
         this.allocatedJob = j;
     }
 
     public Job trigger(int time) {
-        return triggerObject.trigger(time);
+        return triggerObject.trigger(this, time);
     }
 
     /*public Job trigger(int time) {
@@ -147,10 +147,16 @@ public class Resource {
 
     public Job reallocate(Job j) {
         Job jt = allocatedJob;
-        logger.info("Job {} reAllocate with Resourse with speed {}", j, speed);
+        //logger.info("Job {} reAllocate with Resourse with speed {}", j, speed);
         this.setFree(false);
         allocatedJob = j;
         allocatedJob.lastExecTime = time;
         return jt;
+    }
+
+    @Override
+    public String toString() {
+        String str = "Resourse speed " + speed + "\n";
+        return str;
     }
 }

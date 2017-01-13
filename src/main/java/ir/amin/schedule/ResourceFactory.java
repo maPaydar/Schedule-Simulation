@@ -56,7 +56,7 @@ public class ResourceFactory {
                 trigger = new SRTFTrigger();
                 break;
         }
-        for (int i = 0; i < Config.RANDOM_JOBS_NUMBER; i++) {
+        for (int i = 0; i < Config.RESOURCES_NUMBER; i++) {
             Resource r = new Resource(trigger, randomize.getRandomizedResourseSpeed());
             rs.add(r);
         }

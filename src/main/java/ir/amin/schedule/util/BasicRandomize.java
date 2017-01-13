@@ -14,8 +14,8 @@ public class BasicRandomize implements Randomize {
     @Override
     public int getRandomArrivalTime() {
         int x = random.nextInt(Config.RANDOM_UPPER_BOUND), y = 0;
-        int u = Config.RANDOM_UPPER_BOUND / Config.RANDOM_JOBS_NUMBER;
-        for (int i = 0; i < Config.RANDOM_JOBS_NUMBER; i++) {
+        int u = Config.RANDOM_UPPER_BOUND / Config.JOBS_NUMBER;
+        for (int i = 0; i < Config.JOBS_NUMBER; i++) {
             if (x >= i * u) y = i;
         }
         return y;

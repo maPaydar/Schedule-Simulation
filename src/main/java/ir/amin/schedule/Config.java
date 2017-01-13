@@ -8,7 +8,7 @@ public class Config {
     /**
      * number of jobs to scheduling
      */
-    public static final int RANDOM_JOBS_NUMBER = 50;
+    public static final int JOBS_NUMBER = 1;
 
     /**
      * quantum factor in round robin
@@ -18,7 +18,7 @@ public class Config {
     /**
      * number of resources
      */
-    public static final int RANDOM_RESOURCES_NUMBER = 2;
+    public static final int RESOURCES_NUMBER = 1;
 
     /**
      * random bound number

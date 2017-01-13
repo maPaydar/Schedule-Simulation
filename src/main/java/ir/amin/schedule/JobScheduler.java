@@ -1,6 +1,7 @@
 package ir.amin.schedule;
 
 import ir.amin.schedule.algorithm.ScheduleAlgorithm;
+import org.apache.log4j.BasicConfigurator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -18,7 +19,7 @@ public class JobScheduler {
     public List<Job> jobs = new ArrayList<>();
     public List<Resource> resources = new ArrayList<>();
     public List<Resource> returnedJobs = new ArrayList<>();
-    public int proccessorTime = 0;
+    public int proccessorTime = -1;
     private ScheduleAlgorithm algorithm;
 
     public static enum ScheduleType {
@@ -43,6 +44,8 @@ public class JobScheduler {
     }
 
     public void run() {
+        logger.debug("Scheduling start");
+        trigger();
         algorithm.run(this);
     }
 
@@ -86,6 +89,11 @@ public class JobScheduler {
     }
 
     public void trigger() {
+        for (int i = 0; i < jobs.size(); i++) {
+            if (jobs.get(i).getArrivalTime() >= proccessorTime) {
+                readyQueue.add(jobs.remove(i));
+            }
+        }
         for (Resource resource : resources) {
             resource.trigger(proccessorTime);
         }

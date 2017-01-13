@@ -2,8 +2,6 @@ package ir.amin.schedule;
 
 import ir.amin.schedule.util.BasicRandomize;
 import ir.amin.schedule.util.Randomize;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -14,7 +12,6 @@ import java.util.List;
  */
 public class JobFactory {
 
-    private final Logger logger = LoggerFactory.getLogger(JobFactory.class);
     private static JobFactory jobFactory;
     private Randomize randomize;
     private List<Job> generatedJobs;
@@ -42,7 +39,7 @@ public class JobFactory {
 
     public List<Job> generatedJobs() {
         List<Job> jobs = new ArrayList<>();
-        for (int i = 0; i < Config.RANDOM_JOBS_NUMBER; i++) {
+        for (int i = 0; i < Config.JOBS_NUMBER; i++) {
             Job j = new Job();
             j.setArrivalTime(randomize.getRandomArrivalTime());
             j.setBurstTime(randomize.getRandomBurstTime());
