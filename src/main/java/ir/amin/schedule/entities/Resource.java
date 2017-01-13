@@ -29,6 +29,12 @@ public class Resource {
         this.speed = speed;
     }
 
+    public Resource(JobScheduler jobScheduler, Trigger triggerObject, int speed) {
+        this.jobScheduler = jobScheduler;
+        this.triggerObject = triggerObject;
+        this.speed = speed;
+    }
+
     public void setFree(boolean free) {
         isFree = free;
     }
@@ -49,6 +55,13 @@ public class Resource {
         //logger.info("Job {} reAllocate with Resourse with speed {}", j, speed);
         this.setFree(false);
         this.allocatedJob = j;
+    }
+
+    public void unallocate() {
+        setFree(true);
+        logger.info("\nJob {} back to ready queue"
+                , allocatedJob);
+        jobScheduler.backJob(allocatedJob);
     }
 
     public Job trigger(int time) {
