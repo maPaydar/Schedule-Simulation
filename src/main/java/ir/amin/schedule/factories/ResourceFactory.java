@@ -1,5 +1,8 @@
-package ir.amin.schedule;
+package ir.amin.schedule.factories;
 
+import ir.amin.schedule.Config;
+import ir.amin.schedule.JobScheduler;
+import ir.amin.schedule.entities.Resource;
 import ir.amin.schedule.trigger.NonPrimtiveTrigger;
 import ir.amin.schedule.trigger.RRTrigger;
 import ir.amin.schedule.trigger.SRTFTrigger;

@@ -1,4 +1,4 @@
-package ir.amin.schedule;
+package ir.amin.schedule.entities;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

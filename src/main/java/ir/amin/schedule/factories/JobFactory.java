@@ -1,5 +1,7 @@
-package ir.amin.schedule;
+package ir.amin.schedule.factories;
 
+import ir.amin.schedule.Config;
+import ir.amin.schedule.entities.Job;
 import ir.amin.schedule.util.BasicRandomize;
 import ir.amin.schedule.util.Randomize;
 

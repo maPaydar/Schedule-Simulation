@@ -1,7 +1,7 @@
 package ir.amin.schedule.trigger;
 
-import ir.amin.schedule.Job;
-import ir.amin.schedule.Resource;
+import ir.amin.schedule.entities.Job;
+import ir.amin.schedule.entities.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

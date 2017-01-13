@@ -1,6 +1,8 @@
 package ir.amin.schedule;
 
 import ir.amin.schedule.algorithm.ScheduleAlgorithm;
+import ir.amin.schedule.entities.Job;
+import ir.amin.schedule.entities.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
