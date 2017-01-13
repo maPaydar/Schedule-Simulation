@@ -1,9 +1,11 @@
 package ir.amin.schedule.trigger;
 
+import ir.amin.schedule.Resource;
+
 /**
  * Created by amin on 1/12/17.
  */
 public interface Trigger<T> {
 
-    public T trigger(int time);
+    public T trigger(Resource r, int time);
 }
