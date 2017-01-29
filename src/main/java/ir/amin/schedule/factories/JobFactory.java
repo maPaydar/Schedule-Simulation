@@ -55,8 +55,16 @@ public class JobFactory {
     }
 
     public List<Job> getGeneratedJobs() {
-        return generatedJobs;
+        return cloneList(generatedJobs);
     }
+
+
+    public List<Job> cloneList(List<Job> list) {
+        List<Job> clone = new ArrayList<Job>(list.size());
+        for (Job item : list) clone.add((Job) item.clone());
+        return clone;
+    }
+
 
     @Override
     public String toString() {

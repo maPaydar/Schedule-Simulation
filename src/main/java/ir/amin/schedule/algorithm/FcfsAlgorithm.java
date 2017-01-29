@@ -1,5 +1,6 @@
 package ir.amin.schedule.algorithm;
 
+import ir.amin.schedule.Config;
 import ir.amin.schedule.entities.Job;
 import ir.amin.schedule.JobScheduler;
 import ir.amin.schedule.entities.Resource;
@@ -11,13 +12,13 @@ public class FcfsAlgorithm implements ScheduleAlgorithm {
 
     @Override
     public void run(JobScheduler jobScheduler) {
-        while (/*!jobScheduler.jobs.isEmpty() && !jobScheduler.readyQueue.isEmpty()*/true) {
+        while (jobScheduler.returnedJobs.size() != Config.JOBS_NUMBER) {
             for (int i = 0; i < jobScheduler.resources.size(); i++) {
                 Resource fastestResource = jobScheduler.getFastestFreeResource();
                 if (fastestResource != null) {
                     // select a job using an algorithm
                     if (!jobScheduler.readyQueue.isEmpty()) {
-                        Job j = jobScheduler.readyQueue.remove(jobScheduler.getShortestRemainJob());
+                        Job j = jobScheduler.readyQueue.remove(0);
                         j.setStartTime(jobScheduler.proccessorTime);
                         fastestResource.allocate(j);
                     }

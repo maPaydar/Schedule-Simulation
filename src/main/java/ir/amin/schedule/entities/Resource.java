@@ -5,10 +5,12 @@ import ir.amin.schedule.trigger.Trigger;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.Serializable;
+
 /**
  * Created by amin on 12/25/16.
  */
-public class Resource {
+public class Resource implements Cloneable {
 
     private JobScheduler jobScheduler;
     private final Logger logger = LoggerFactory.getLogger(Resource.class);
@@ -62,6 +64,10 @@ public class Resource {
         logger.info("\nJob {} back to ready queue"
                 , allocatedJob);
         jobScheduler.backJob(allocatedJob);
+    }
+
+    public void finishJob() {
+        jobScheduler.finishJob(allocatedJob);
     }
 
     public Job trigger(int time) {
@@ -146,6 +152,9 @@ public class Resource {
         return null;
     }*/
 
+    public void setTriggerObject(Trigger<Job> triggerObject) {
+        this.triggerObject = triggerObject;
+    }
 
     public Job getAllocatedJob() {
         return allocatedJob;
@@ -161,10 +170,8 @@ public class Resource {
 
     public Job reallocate(Job j) {
         Job jt = allocatedJob;
-        //logger.info("Job {} reAllocate with Resourse with speed {}", j, speed);
         this.setFree(false);
         allocatedJob = j;
-        allocatedJob.lastExecTime = time;
         return jt;
     }
 
@@ -172,5 +179,13 @@ public class Resource {
     public String toString() {
         String str = "Resourse speed " + speed + "\n";
         return str;
+    }
+
+    public Object clone() {
+        try {
+            return super.clone();
+        } catch (CloneNotSupportedException var2) {
+            throw new InternalError(var2);
+        }
     }
 }

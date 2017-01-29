@@ -6,9 +6,7 @@ import ir.amin.schedule.entities.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by amin on 12/25/16.
@@ -19,7 +17,7 @@ public class JobScheduler {
     public List<Job> readyQueue = new LinkedList<>();
     public List<Job> jobs = new ArrayList<>();
     public List<Resource> resources = new ArrayList<>();
-    public List<Resource> returnedJobs = new ArrayList<>();
+    public List<Job> returnedJobs = new ArrayList<>();
     public int proccessorTime = 0;
     private ScheduleAlgorithm algorithm;
 
@@ -46,8 +44,20 @@ public class JobScheduler {
 
     public void run() {
         logger.debug("Scheduling start");
-        trigger();
+        //trigger();
         algorithm.run(this);
+    }
+
+
+    public void clearJobScheduler() {
+        readyQueue.clear();
+        jobs.clear();
+        returnedJobs.clear();
+        resources.clear();
+        proccessorTime = 0;
+        for (int i = 0; i < jobs.size(); i++) {
+            jobs.get(i).runningTimePeriods.clear();
+        }
     }
 
     public int getShortestJob() {
@@ -81,7 +91,7 @@ public class JobScheduler {
         int sj = -1;
         for (int i = 0; i < readyQueue.size(); i++) {
             Job j = readyQueue.get(i);
-            if (j.getRemainingTime() < m) {
+            if (j.getRemainingTime() < m && j.getStartTime() == -1) {
                 m = j.getRemainingTime();
                 sj = i;
             }
@@ -115,6 +125,14 @@ public class JobScheduler {
         return maxResource;
     }
 
+    public int getFirstUnStrtedJob () {
+        for (int i = 0; i < readyQueue.size(); i++) {
+            if(readyQueue.get(i).getStartTime() == -1)
+                return i;
+        }
+        return -1;
+    }
+
     public Resource getFastestBusyResource() {
         Resource maxResource = null;
         int maxSpeed = -1;
@@ -127,6 +145,12 @@ public class JobScheduler {
         return maxResource;
     }
 
+
+    public void sortReturnedJobs() {
+        Collections.sort(this.returnedJobs, (j1, j2) -> {
+            return (j2.getArrivalTime() > j1.getArrivalTime()) ? -1 : 1;
+        });
+    }
 
     public List<Job> getReadyQueue() {
         return readyQueue;
@@ -142,6 +166,24 @@ public class JobScheduler {
     }
 
     public void backJob(Job j) {
+        j.setStartTime(-1);
         this.readyQueue.add(j);
     }
+
+    public void finishJob(Job j) {
+        this.returnedJobs.add(j);
+    }
+
+    public void setJobs(List<Job> jobs) {
+        this.jobs = jobs;
+    }
+
+    public void setResources(List<Resource> resources) {
+        this.resources = resources;
+    }
+
+    public void setAlgorithm(ScheduleAlgorithm algorithm) {
+        this.algorithm = algorithm;
+    }
+
 }

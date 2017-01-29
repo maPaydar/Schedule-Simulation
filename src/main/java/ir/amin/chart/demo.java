@@ -16,6 +16,7 @@ package ir.amin.chart;/* Copyright (c) 2007-2014 by panayotis.com
 
 import com.panayotis.gnuplot.GNUPlotParameters;
 import com.panayotis.gnuplot.JavaPlot;
+import com.panayotis.gnuplot.dataset.ArrayDataSet;
 import com.panayotis.gnuplot.dataset.FileDataSet;
 import com.panayotis.gnuplot.layout.StripeLayout;
 import com.panayotis.gnuplot.plot.AbstractPlot;
@@ -27,13 +28,9 @@ import com.panayotis.gnuplot.swing.JPlot;
 import com.panayotis.gnuplot.terminal.PostscriptTerminal;
 import com.panayotis.gnuplot.terminal.SVGTerminal;
 import com.panayotis.gnuplot.utils.Debug;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import javax.swing.JFrame;
+
+import javax.swing.*;
+import java.io.*;
 
 /**
  * This Object is used to demonstrate JavaPlot library
@@ -44,7 +41,7 @@ public class demo {
 
     /**
      * @param args the command line arguments. First argument is the path of
-     * gnuplot application
+     *             gnuplot application
      */
     public static void main(String[] args) {
         String path = null;
@@ -55,8 +52,9 @@ public class demo {
         //simple3D();
         //defaultTerminal(path);
         //EPSTerminal(path);
+        //EPSTerminalDataSet(path);
         //SVGTerminal(path);
-        JPlotTerminal(path);
+        //JPlotTerminal(path);
         //serialization(defaultTerminal(path));
         //file();
 
@@ -115,6 +113,28 @@ public class demo {
         p.getPage().setLayout(lo);
         p.plot();
 
+        return p;
+    }
+
+    /* This ir.amin.temp.demo code creates a EPS file on home directory */
+    private static JavaPlot EPSTerminalDataSet(String gnuplotpath) {
+        JavaPlot p = new JavaPlot();
+        p.addPlot(new double[][]
+                {
+                        {}, {}
+                });
+        PostscriptTerminal epsf = new PostscriptTerminal(System.getProperty("user.home")
+                + System.getProperty("file.separator") + "output.eps");
+        epsf.setColor(true);
+        p.setTerminal(epsf);
+
+        p.setTitle("Postscript Terminal Title");
+        double[][] plot = {{1, 1.1}, {2, 2.2}, {3, 3.3}, {4, 4.3}};
+
+        DataSetPlot s = new DataSetPlot(plot);
+        ArrayDataSet as = new ArrayDataSet(plot);
+        p.addPlot(as);
+        p.plot();
         return p;
     }
 

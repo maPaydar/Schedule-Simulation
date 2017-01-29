@@ -3,10 +3,13 @@ package ir.amin.schedule.entities;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by amin on 12/25/16.
  */
-public class Job {
+public class Job implements Cloneable {
 
     final Logger logger = LoggerFactory.getLogger(Job.class);
     private int arrivalTime;
@@ -14,7 +17,7 @@ public class Job {
     private int burstTime;
     private int remainingTime;
     private int returnedTime;
-    public int lastExecTime;
+    public List<Period> runningTimePeriods = new ArrayList<>();
 
     public void setArrivalTime(int arrivalTime) {
         this.arrivalTime = arrivalTime;
@@ -66,4 +69,13 @@ public class Job {
                 "\nReturnTime " + getReturnedTime();
         return str;
     }
+
+    public Object clone() {
+        try {
+            return super.clone();
+        } catch (CloneNotSupportedException var2) {
+            throw new InternalError(var2);
+        }
+    }
 }
+

@@ -17,11 +17,12 @@ public class NonPrimtiveTrigger implements Trigger<Job> {
         Job sj = null;
         if (r.allocatedJob != null) {
             // ToDo update remaning time
-            r.allocatedJob.setRemainingTime(r.allocatedJob.getReturnedTime());
-            // if (allocatedJob.getRemainingTime() <= 0)
-            if (time - r.allocatedJob.getStartTime() >= r.mapBurstTime(r.allocatedJob.getBurstTime())) {
+            r.allocatedJob.setRemainingTime(r.allocatedJob.getRemainingTime() - 1);
+            if (r.allocatedJob.getRemainingTime() <= 0) {
+            //if (time - r.allocatedJob.getStartTime() >= r.mapBurstTime(r.allocatedJob.getBurstTime())) {
                 r.allocatedJob.setReturnedTime(time);
                 r.setFree(true);
+                r.finishJob();
                 logger.info("\narrival at {}\nstart at {}\nburst time {}\nreturned time {}\n"
                         , r.allocatedJob.getArrivalTime()
                         , r.allocatedJob.getStartTime()
