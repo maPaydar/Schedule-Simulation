@@ -44,7 +44,6 @@ public class JobScheduler {
 
     public void run() {
         logger.debug("Scheduling start");
-        //trigger();
         algorithm.run(this);
     }
 

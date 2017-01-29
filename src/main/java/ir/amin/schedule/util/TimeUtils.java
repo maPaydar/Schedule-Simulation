@@ -81,7 +81,7 @@ public class TimeUtils {
         return sum / jobs.size();
     }
 
-    public static double getTurnAroundTime(List<Job> jobs) {
+    public static double computeTurnAroundTime(List<Job> jobs) {
         int sum = 0;
         for (int i = 0; i < jobs.size(); i++) {
             sum += jobs.get(i).getReturnedTime() - jobs.get(i).getArrivalTime();
