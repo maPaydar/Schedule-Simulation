@@ -16,7 +16,7 @@ public class TimeUtils {
 
     static int in1 = 1;
 
-    public static double nonPrimetiveAverageWatingTime(List<Job> jobs) {
+    public static double getNonPrimetiveAverageWatingTime(List<Job> jobs) {
         try {
             writeExcel.write("nonpr" + in1 + ".xls");
         } catch (IOException e) {
@@ -42,7 +42,7 @@ public class TimeUtils {
     static WriteExcel writeExcel = new WriteExcel();
     static int in2 = 1;
 
-    public static double primetiveAverageWatingTime(List<Job> jobs) {
+    public static double getPrimetiveAverageWatingTime(List<Job> jobs) {
         try {
             writeExcel.write("pr" + in2 + ".xls");
         } catch (IOException e) {
@@ -81,7 +81,7 @@ public class TimeUtils {
         return sum / jobs.size();
     }
 
-    public static double turnAroundTime(List<Job> jobs) {
+    public static double getTurnAroundTime(List<Job> jobs) {
         int sum = 0;
         for (int i = 0; i < jobs.size(); i++) {
             sum += jobs.get(i).getReturnedTime() - jobs.get(i).getArrivalTime();

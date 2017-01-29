@@ -43,8 +43,8 @@ public class Main {
         jobScheduler.sortReturnedJobs();
         System.out.println(jobScheduler.returnedJobs);
         System.out.println("FCFS FINISHED");
-        System.out.println("Turn around time = " + TimeUtils.turnAroundTime(jobScheduler.returnedJobs));
-        System.out.println("Wating time = " + TimeUtils.nonPrimetiveAverageWatingTime(jobScheduler.returnedJobs));
+        System.out.println("Turn around time = " + TimeUtils.getTurnAroundTime(jobScheduler.returnedJobs));
+        System.out.println("Wating time = " + TimeUtils.getNonPrimetiveAverageWatingTime(jobScheduler.returnedJobs));
         // SJF
         resourceFactory.setScheduleType(new NonPrimtiveTrigger());
         jobScheduler.clearJobScheduler();
@@ -54,8 +54,8 @@ public class Main {
         jobScheduler.run();
         jobScheduler.sortReturnedJobs();
         System.out.println("SJF FINISHED");
-        System.out.println("Turn around time = " + TimeUtils.turnAroundTime(jobScheduler.returnedJobs));
-        System.out.println("Wating time = " + TimeUtils.nonPrimetiveAverageWatingTime(jobScheduler.returnedJobs));
+        System.out.println("Turn around time = " + TimeUtils.getTurnAroundTime(jobScheduler.returnedJobs));
+        System.out.println("Wating time = " + TimeUtils.getNonPrimetiveAverageWatingTime(jobScheduler.returnedJobs));
         // MAX_MIN
         resourceFactory.setScheduleType(new NonPrimtiveTrigger());
         jobScheduler.clearJobScheduler();
@@ -65,8 +65,8 @@ public class Main {
         jobScheduler.run();
         jobScheduler.sortReturnedJobs();
         System.out.println("MAX_MIN FINISHED");
-        System.out.println("Turn around time = " + TimeUtils.turnAroundTime(jobScheduler.returnedJobs));
-        System.out.println("Wating time = " + TimeUtils.nonPrimetiveAverageWatingTime(jobScheduler.returnedJobs));
+        System.out.println("Turn around time = " + TimeUtils.getTurnAroundTime(jobScheduler.returnedJobs));
+        System.out.println("Wating time = " + TimeUtils.getNonPrimetiveAverageWatingTime(jobScheduler.returnedJobs));
         // RR
         Config.RR_QUANTUM = 2;
         resourceFactory.setScheduleType(new RRTrigger());
@@ -80,8 +80,8 @@ public class Main {
         jobScheduler.run();
         jobScheduler.sortReturnedJobs();
         System.out.println("RR FINISHED");
-        System.out.println("Turn around time = " + TimeUtils.turnAroundTime(jobScheduler.returnedJobs));
-        System.out.println("Wating time = " + TimeUtils.primetiveAverageWatingTime(jobScheduler.returnedJobs));
+        System.out.println("Turn around time = " + TimeUtils.getTurnAroundTime(jobScheduler.returnedJobs));
+        System.out.println("Wating time = " + TimeUtils.getPrimetiveAverageWatingTime(jobScheduler.returnedJobs));
 
         Config.RR_QUANTUM = 4;
         resourceFactory.setScheduleType(new RRTrigger());
@@ -95,8 +95,8 @@ public class Main {
         jobScheduler.run();
         jobScheduler.sortReturnedJobs();
         System.out.println("RR FINISHED");
-        System.out.println("Turn around time = " + TimeUtils.turnAroundTime(jobScheduler.returnedJobs));
-        System.out.println("Wating time = " + TimeUtils.primetiveAverageWatingTime(jobScheduler.returnedJobs));
+        System.out.println("Turn around time = " + TimeUtils.getTurnAroundTime(jobScheduler.returnedJobs));
+        System.out.println("Wating time = " + TimeUtils.getPrimetiveAverageWatingTime(jobScheduler.returnedJobs));
 
         Config.RR_QUANTUM = 6;
         resourceFactory.setScheduleType(new RRTrigger());
@@ -110,8 +110,8 @@ public class Main {
         jobScheduler.run();
         jobScheduler.sortReturnedJobs();
         System.out.println("RR FINISHED");
-        System.out.println("Turn around time = " + TimeUtils.turnAroundTime(jobScheduler.returnedJobs));
-        System.out.println("Wating time = " + TimeUtils.primetiveAverageWatingTime(jobScheduler.returnedJobs));
+        System.out.println("Turn around time = " + TimeUtils.getTurnAroundTime(jobScheduler.returnedJobs));
+        System.out.println("Wating time = " + TimeUtils.getPrimetiveAverageWatingTime(jobScheduler.returnedJobs));
 
         Config.RR_QUANTUM = 8;
         resourceFactory.setScheduleType(new RRTrigger());
@@ -125,8 +125,8 @@ public class Main {
         jobScheduler.run();
         jobScheduler.sortReturnedJobs();
         System.out.println("RR FINISHED");
-        System.out.println("Turn around time = " + TimeUtils.turnAroundTime(jobScheduler.returnedJobs));
-        System.out.println("Wating time = " + TimeUtils.primetiveAverageWatingTime(jobScheduler.returnedJobs));
+        System.out.println("Turn around time = " + TimeUtils.getTurnAroundTime(jobScheduler.returnedJobs));
+        System.out.println("Wating time = " + TimeUtils.getPrimetiveAverageWatingTime(jobScheduler.returnedJobs));
         Config.RR_QUANTUM = 10;
         resourceFactory.setScheduleType(new RRTrigger());
         jobScheduler.clearJobScheduler();
@@ -139,8 +139,8 @@ public class Main {
         jobScheduler.run();
         jobScheduler.sortReturnedJobs();
         System.out.println("RR FINISHED");
-        System.out.println("Turn around time = " + TimeUtils.turnAroundTime(jobScheduler.returnedJobs));
-        System.out.println("Wating time = " + TimeUtils.primetiveAverageWatingTime(jobScheduler.returnedJobs));
+        System.out.println("Turn around time = " + TimeUtils.getTurnAroundTime(jobScheduler.returnedJobs));
+        System.out.println("Wating time = " + TimeUtils.getPrimetiveAverageWatingTime(jobScheduler.returnedJobs));
 
         // SRTF
         resourceFactory.setScheduleType(new SRTFTrigger());
@@ -154,7 +154,7 @@ public class Main {
         jobScheduler.run();
         jobScheduler.sortReturnedJobs();
         System.out.println("SRTF FINISHED");
-        System.out.println("Turn around time = " + TimeUtils.turnAroundTime(jobScheduler.returnedJobs));
-        System.out.println("Wating time = " + TimeUtils.primetiveAverageWatingTime(jobScheduler.returnedJobs));
+        System.out.println("Turn around time = " + TimeUtils.getTurnAroundTime(jobScheduler.returnedJobs));
+        System.out.println("Wating time = " + TimeUtils.getPrimetiveAverageWatingTime(jobScheduler.returnedJobs));
     }
 }

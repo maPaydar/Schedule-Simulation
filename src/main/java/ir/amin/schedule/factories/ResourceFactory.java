@@ -11,7 +11,6 @@ import ir.amin.schedule.trigger.Trigger;
 import ir.amin.schedule.util.BasicRandomize;
 import ir.amin.schedule.util.Randomize;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
