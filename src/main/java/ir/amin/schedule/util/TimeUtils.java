@@ -16,7 +16,7 @@ public class TimeUtils {
 
     static int in1 = 1;
 
-    public static double getNonPrimetiveAverageWatingTime(List<Job> jobs) {
+    public static double computeNonPrimetiveAverageWatingTime(List<Job> jobs) {
         try {
             writeExcel.write("nonpr" + in1 + ".xls");
         } catch (IOException e) {
@@ -42,7 +42,7 @@ public class TimeUtils {
     static WriteExcel writeExcel = new WriteExcel();
     static int in2 = 1;
 
-    public static double getPrimetiveAverageWatingTime(List<Job> jobs) {
+    public static double computePrimetiveAverageWatingTime(List<Job> jobs) {
         try {
             writeExcel.write("pr" + in2 + ".xls");
         } catch (IOException e) {
