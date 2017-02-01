@@ -38,7 +38,7 @@ public class Main {
         System.out.println();
 
         resourceFactory.setScheduleType(new NonPrimtiveTrigger());
-        jobScheduler.clearJobScheduler();
+        jobScheduler.restart();
         jobScheduler.setJobs(jobFactory.getGeneratedJobs());
         jobScheduler.setResources(resourceFactory.getGeneratedResources());
         jobScheduler.setAlgorithm(new FcfsAlgorithm());
@@ -48,7 +48,7 @@ public class Main {
         System.out.format("%20f", TimeUtils.computeNonPrimetiveAverageWatingTime(jobScheduler.returnedJobs));
 
         resourceFactory.setScheduleType(new NonPrimtiveTrigger());
-        jobScheduler.clearJobScheduler();
+        jobScheduler.restart();
         jobScheduler.setJobs(jobFactory.getGeneratedJobs());
         jobScheduler.setResources(resourceFactory.getGeneratedResources());
         jobScheduler.setAlgorithm(new SjfAlgorithm());
@@ -58,7 +58,7 @@ public class Main {
         System.out.format("%20f", TimeUtils.computeNonPrimetiveAverageWatingTime(jobScheduler.returnedJobs));
 
         resourceFactory.setScheduleType(new NonPrimtiveTrigger());
-        jobScheduler.clearJobScheduler();
+        jobScheduler.restart();
         jobScheduler.setJobs(jobFactory.getGeneratedJobs());
         jobScheduler.setResources(resourceFactory.getGeneratedResources());
         jobScheduler.setAlgorithm(new MaxMinAlgorithm());
@@ -69,7 +69,7 @@ public class Main {
 
         Config.RR_QUANTUM = 2;
         resourceFactory.setScheduleType(new RRTrigger());
-        jobScheduler.clearJobScheduler();
+        jobScheduler.restart();
         jobScheduler.setJobs(jobFactory.getGeneratedJobs());
         jobScheduler.setResources(resourceFactory.getGeneratedResources());
         jobScheduler.setAlgorithm(new RRAlgorithm());
@@ -83,7 +83,7 @@ public class Main {
         /*
         Config.RR_QUANTUM = 4;
         resourceFactory.setScheduleType(new RRTrigger());
-        jobScheduler.clearJobScheduler();
+        jobScheduler.restart();
         jobScheduler.setJobs(jobFactory.getGeneratedJobs());
         jobScheduler.setResources(resourceFactory.getGeneratedResources());
         jobScheduler.setAlgorithm(new RRAlgorithm());
@@ -98,7 +98,7 @@ public class Main {
 
         Config.RR_QUANTUM = 6;
         resourceFactory.setScheduleType(new RRTrigger());
-        jobScheduler.clearJobScheduler();
+        jobScheduler.restart();
         jobScheduler.setJobs(jobFactory.getGeneratedJobs());
         jobScheduler.setResources(resourceFactory.getGeneratedResources());
         jobScheduler.setAlgorithm(new RRAlgorithm());
@@ -113,7 +113,7 @@ public class Main {
 
         Config.RR_QUANTUM = 8;
         resourceFactory.setScheduleType(new RRTrigger());
-        jobScheduler.clearJobScheduler();
+        jobScheduler.restart();
         jobScheduler.setJobs(jobFactory.getGeneratedJobs());
         jobScheduler.setResources(resourceFactory.getGeneratedResources());
         jobScheduler.setAlgorithm(new RRAlgorithm());
@@ -127,7 +127,7 @@ public class Main {
         System.out.println("Wating time = " + TimeUtils.computePrimetiveAverageWatingTime(jobScheduler.returnedJobs));
         Config.RR_QUANTUM = 10;
         resourceFactory.setScheduleType(new RRTrigger());
-        jobScheduler.clearJobScheduler();
+        jobScheduler.restart();
         jobScheduler.setJobs(jobFactory.getGeneratedJobs());
         jobScheduler.setResources(resourceFactory.getGeneratedResources());
         jobScheduler.setAlgorithm(new RRAlgorithm());
@@ -142,7 +142,7 @@ public class Main {
         */
 
         resourceFactory.setScheduleType(new SRTFTrigger());
-        jobScheduler.clearJobScheduler();
+        jobScheduler.restart();
         jobScheduler.setJobs(jobFactory.getGeneratedJobs());
         jobScheduler.setResources(resourceFactory.getGeneratedResources());
         jobScheduler.setAlgorithm(new SrtfAlgorithm());

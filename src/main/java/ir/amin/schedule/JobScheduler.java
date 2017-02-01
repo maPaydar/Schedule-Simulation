@@ -48,7 +48,7 @@ public class JobScheduler {
     }
 
 
-    public void clearJobScheduler() {
+    public void restart() {
         readyQueue.clear();
         jobs.clear();
         returnedJobs.clear();

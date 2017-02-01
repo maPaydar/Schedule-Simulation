@@ -13,7 +13,6 @@ import java.util.List;
  */
 public class SrtfAlgorithm implements ScheduleAlgorithm {
 
-    // Todo implement srtf
     @Override
     public void run(JobScheduler jobScheduler) {
         while (jobScheduler.returnedJobs.size() != Config.JOBS_NUMBER) {
